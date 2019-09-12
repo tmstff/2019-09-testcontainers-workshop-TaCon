@@ -1,0 +1,31 @@
+node {
+
+    stage('Preparation') {
+        checkout scm
+        //checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+        //   userRemoteConfigs: [[
+        //      url: 'https://gitlab.com/tarent/youtrain.git',
+        //      credentialsId: 'gitlab_tech_user']]
+        //])
+    }
+
+    stage('Build & Test') {
+        echo 'Building....'
+        sh "docker build -t registry.gitlab.com/tarent/youtrain:$BUILD_NUMBER ."
+    }
+
+    stage('Deploy') {
+        echo 'Deploying latest service version ....'
+        sh 'docker-compose up -d youtrain'
+    }
+
+    stage('Cleanup') {
+        echo 'Cleanup....'
+        try {
+            sh 'bin/docker-cleanup.sh'
+        } catch (Exception e) {
+            echo "Warn: $e"
+        }
+    }
+
+}

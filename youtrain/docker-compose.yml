@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  youtrain:
+    image: registry.gitlab.com/tarent/youtrain:${BUILD_NUMBER:-latest}
+    extra_hosts:
+      - "youtrain-server:$HOST_IP"
+    ports:
+      - 8090:80

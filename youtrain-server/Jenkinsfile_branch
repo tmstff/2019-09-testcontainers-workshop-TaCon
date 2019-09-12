@@ -1,0 +1,18 @@
+node {
+
+    stage('Preparation') {
+        checkout scm
+        //checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+        //   userRemoteConfigs: [[
+        //      url: 'https://gitlab.com/tarent/youtrain-server.git',
+        //      credentialsId: 'gitlab_tech_user']]
+        //])
+    }
+
+    stage('Build') {
+        echo 'Building....'
+        sh './gradlew clean test'
+    }
+
+
+}

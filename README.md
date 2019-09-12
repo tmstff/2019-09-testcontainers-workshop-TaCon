@@ -1,2 +1,10 @@
-# 2019-09-testcontainers-workshop-TaCon
-Slides &amp; projects for the TaCon Live Coding Session "Testcontainers: einfach Docker Container in Tests einbinden"
+# Testcontainers: einfach Docker Container in Tests einbinden
+
+## Slides
+
+* TBD
+
+## Projects
+
+* [youtrain](youtrain/)
+* [youtrain-server](youtrain-server/)
