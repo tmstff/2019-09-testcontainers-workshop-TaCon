@@ -5,39 +5,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.tarent.youtrainserver.entity.Course;
 import de.tarent.youtrainserver.entity.CourseDate;
 import org.junit.BeforeClass;
-import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.util.TestPropertyValues;
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.images.builder.ImageFromDockerfile;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-import static java.lang.System.getenv;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.testcontainers.containers.wait.strategy.Wait.forHealthcheck;
 
 /**
  * Integration test probing all CRUD actions via the REST API
@@ -48,15 +38,7 @@ import static org.testcontainers.containers.wait.strategy.Wait.forHealthcheck;
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @SpringBootTest(classes = YoutrainServerApplication.class)
-@ContextConfiguration(initializers = {CoursesComponentTest.Initializer.class})
 public class CoursesComponentTest {
-
-    @ClassRule
-    public     static GenericContainer mariaDB =
-            new GenericContainer(
-                    new ImageFromDockerfile()
-                            .withFileFromClasspath("Dockerfile", "mariadb/Dockerfile")
-            ).waitingFor(forHealthcheck());
 
     @Autowired
     private MockMvc mockMvc;
@@ -182,8 +164,7 @@ public class CoursesComponentTest {
                 .hasFieldOrPropertyWithValue("title", newTitle)
                 .hasFieldOrPropertyWithValue("description", parsedOriginal.getDescription())
                 .hasFieldOrPropertyWithValue("teacher", parsedOriginal.getTeacher())
-                .hasFieldOrPropertyWithValue("price", parsedOriginal.getPrice())
-                .hasFieldOrPropertyWithValue("courseDates", parsedOriginal.getCourseDates());
+                .hasFieldOrPropertyWithValue("price", parsedOriginal.getPrice());
     }
 
     @Test
@@ -205,18 +186,6 @@ public class CoursesComponentTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.amount", is(9)));
-    }
-
-    static class Initializer
-            implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
-            String host = Optional.ofNullable( getenv("HOST_IP") ).orElse("localhost");
-            String jdbcUrl = "jdbc:mysql://" + host + ":" + mariaDB.getMappedPort(3306) + "/ta_youtrain";
-
-            TestPropertyValues.of(
-                    "spring.datasource.url=" + jdbcUrl
-            ).applyTo(configurableApplicationContext.getEnvironment());
-        }
     }
 
 }
