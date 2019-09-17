@@ -1,0 +1,19 @@
+spring:
+  jpa.hibernate.ddl-auto: none
+  datasource:
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:mysql:5.7.22://localhost/ta_youtrain
+    username: tarent
+    password: tarent
+
+---
+
+# use -Dspring.profiles.active=h2 to activate H2!
+
+spring:
+  profiles: h2
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa

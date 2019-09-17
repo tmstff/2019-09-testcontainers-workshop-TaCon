@@ -2,7 +2,9 @@ package componenttest
 
 import de.tarent.youtrainserver.YoutrainServerApplication
 import de.tarent.youtrainserver.entity.CourseDate
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.jdbc.core.JdbcTemplate
 import spock.lang.Specification
 import spock.lang.Unroll
 import util.DB
@@ -13,16 +15,8 @@ import java.sql.Timestamp
 import static groovy.json.JsonOutput.toJson
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 
-@SpringBootTest(classes = YoutrainServerApplication.class, webEnvironment = RANDOM_PORT, properties = ["togglz.features.SALE.enabled=false"])
+@SpringBootTest(classes = YoutrainServerApplication.class, webEnvironment = RANDOM_PORT)
 class CoursesComponentSpec extends Specification implements DB, REST {
-
-    def setupSpec() {
-        startDb()
-    }
-
-    def cleanupSpec() {
-        stopDb()
-    }
 
     def setup() {
         resetData()
@@ -34,7 +28,7 @@ class CoursesComponentSpec extends Specification implements DB, REST {
 
         then:
         response.status == 200
-        response.data.size >= 5 // TODO: because of dependencies between the tests
+        response.data.size == 6
     }
 
     @Unroll

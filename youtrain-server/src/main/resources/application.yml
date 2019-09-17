@@ -1,0 +1,17 @@
+spring:
+  jpa.hibernate.ddl-auto: none
+  datasource:
+    url: jdbc:mysql://localhost:3306/ta_youtrain
+    username: tarent
+    password: tarent
+
+togglz:
+  enabled: true
+  console:
+    enabled: true
+    secured: false
+    path: /togglz-console
+    use-management-port: false
+  features.SALE.enabled: false
+
+management.endpoints.web.exposure.include: health,prometheus
