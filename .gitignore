@@ -1,4 +1,5 @@
 .gradle
+/testcontainers-tryout/build/
 /youtrain-server/build/
 !gradle/wrapper/gradle-wrapper.jar
 
