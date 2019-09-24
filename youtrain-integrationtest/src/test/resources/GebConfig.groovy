@@ -7,6 +7,7 @@ println("geb.env=${System.getProperty('geb.env')}")
 host = '172.17.0.1' // docker network interface
 baseUrl = "http://$host:8090/"
 
+//driver = 'chrome'
 driver = {
     def container = new BrowserWebDriverContainer()
             .withCapabilities(new ChromeOptions())
