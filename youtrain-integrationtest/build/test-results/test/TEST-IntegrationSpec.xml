@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="IntegrationSpec" tests="2" skipped="0" failures="2" errors="0" timestamp="2019-09-24T16:42:17" hostname="tsteff-thinkpad-w520" time="14.603">
+  <properties/>
+  <testcase name="Homepage is shown" classname="IntegrationSpec" time="8.568">
+    <failure message="Assertion failed: &#10;&#10;title == &quot;YouTrain&quot;&#10;|     |&#10;|     false&#10;'172.17.0.1'&#10;" type="org.codehaus.groovy.runtime.powerassert.PowerAssertionError">Assertion failed: 
+
+title == &quot;YouTrain&quot;
+|     |
+|     false
+'172.17.0.1'
+
+	at pages.HomePage._clinit__closure1(HomePage.groovy:9)
+	at pages.HomePage._clinit__closure1(HomePage.groovy)
+	at geb.Page.verifyThisPageAtOnly(Page.groovy:506)
+	at geb.Page.getAtVerificationResult(Page.groovy:215)
+	at geb.Page.verifyAt(Page.groovy:186)
+	at geb.Browser.doAt(Browser.groovy:1126)
+	at geb.Browser.at(Browser.groovy:408)
+	at geb.Browser.to(Browser.groovy:560)
+	at geb.Browser.to(Browser.groovy:537)
+	at geb.Browser.to(Browser.groovy:526)
+	at geb.spock.GebSpec.methodMissing(GebSpec.groovy:60)
+	at IntegrationSpec.Homepage is shown(IntegrationSpec.groovy:24)
+</failure>
+  </testcase>
+  <testcase name="Courses are displayed" classname="IntegrationSpec" time="6.035">
+    <failure message="Assertion failed: &#10;&#10;title == &quot;YouTrain&quot;&#10;|     |&#10;|     false&#10;'172.17.0.1'&#10;" type="org.codehaus.groovy.runtime.powerassert.PowerAssertionError">Assertion failed: 
+
+title == &quot;YouTrain&quot;
+|     |
+|     false
+'172.17.0.1'
+
+	at pages.HomePage._clinit__closure1(HomePage.groovy:9)
+	at pages.HomePage._clinit__closure1(HomePage.groovy)
+	at geb.Page.verifyThisPageAtOnly(Page.groovy:506)
+	at geb.Page.getAtVerificationResult(Page.groovy:215)
+	at geb.Page.verifyAt(Page.groovy:186)
+	at geb.Browser.doAt(Browser.groovy:1126)
+	at geb.Browser.at(Browser.groovy:408)
+	at geb.Browser.to(Browser.groovy:560)
+	at geb.Browser.to(Browser.groovy:537)
+	at geb.Browser.to(Browser.groovy:526)
+	at geb.spock.GebSpec.methodMissing(GebSpec.groovy:60)
+	at IntegrationSpec.Courses are displayed(IntegrationSpec.groovy:34)
+</failure>
+  </testcase>
+  <system-out><![CDATA[        ℹ︎ Checking the system...
+        ✔ Docker version should be at least 1.6.0
+        ✔ Docker environment should have more than 2GB free disk space
+]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Sep 24, 2019 6:42:23 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFORMATION: Detected dialect: W3C
+Sep 24, 2019 6:42:29 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFORMATION: Detected dialect: W3C
+]]></system-err>
+</testsuite>

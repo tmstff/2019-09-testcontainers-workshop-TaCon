@@ -1,0 +1,27 @@
+version: '2.1'
+services:
+  youtrain:
+    image: registry.gitlab.com/tarent/youtrain:latest
+    links:
+      - youtrain-server
+    ports:
+      - 8090:80
+
+  youtrain-server:
+    image: registry.gitlab.com/tarent/youtrain-server:latest
+    environment:
+      - spring.datasource.url=jdbc:mysql://youtrain-db:3306/ta_youtrain
+    links:
+      - youtrain-db
+    depends_on:
+      youtrain-db:
+        condition: service_healthy  # no longer supported in dcoker-compose file version 3
+          # look into https://github.com/jwilder/dockerize instead
+        # or build retry into your service (probably preferable)
+    ports:
+      - 8080:8080
+
+  youtrain-db:
+    build: mariadb
+    ports:
+      - 3306:3306

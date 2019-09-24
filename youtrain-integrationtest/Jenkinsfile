@@ -1,0 +1,46 @@
+node {
+
+    stage('Preparation') {
+        checkout scm
+        //checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+        //   userRemoteConfigs: [[
+        //      url: 'https://gitlab.com/tarent/youtrain-integrationtest.git',
+        //      credentialsId: 'gitlab_tech_user']]
+        //])
+    }
+
+    stage('Make sure Selenium Grid is running') {
+        sh 'docker-compose up -d'
+    }
+
+    stage('Run Tests on chrome') {
+        try {
+            withEnv(['geb_env=chromeGrid']) {
+                sh './gradlew clean test'
+            }
+        }
+        finally {
+            junit '**/build/test-results/test/*.xml'
+        }
+    }
+
+    stage('Run Tests on firefox') {
+        try {
+            withEnv(['geb_env=firefoxGrid']) {
+                sh './gradlew test'
+            }
+        }
+        finally {
+            junit '**/build/test-results/test/*.xml'
+        }
+    }
+
+    stage('Cleanup') {
+        try {
+            sh 'src/bin/docker-cleanup.sh'
+        } catch (Exception e) {
+            echo "Warn: $e"
+        }
+    }
+
+}

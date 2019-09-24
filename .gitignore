@@ -2,6 +2,7 @@
 /testcontainers-tryout/build/
 /youtrain-server/build/
 !gradle/wrapper/gradle-wrapper.jar
+testcontainers-demo/test.flv
 
 ### STS ###
 .apt_generated

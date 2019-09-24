@@ -5,13 +5,6 @@ services:
     ports:
       - 3306:3306
 
-  youtrain-db-adminer:
-    image: adminer:4.7
-    links:
-      - youtrain-db
-    ports:
-      - 8081:8080
-
   youtrain-server:
     image: registry.gitlab.com/tarent/youtrain-server:${BUILD_NUMBER:-latest}
     environment:
