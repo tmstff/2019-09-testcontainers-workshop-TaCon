@@ -6,8 +6,6 @@ PostgreSQLContainer postgres =
 
 postgres.start()
 
-postgres.getJdbcUrl()
-
 println("Accessible via ${postgres.getJdbcUrl()}")
 
 System.in.newReader().readLine()
