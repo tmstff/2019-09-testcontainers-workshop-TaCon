@@ -23,7 +23,7 @@ class IntegrationSpec extends GebSpec {
 
         then:
         waitFor { at CoursesPage }
-        searchResultTrs.size() == 6
+        waitFor { searchResultTrs.size() == 6 }
     }
 
 }

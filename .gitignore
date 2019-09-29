@@ -1,6 +1,5 @@
 .gradle
-/testcontainers-tryout/build/
-/youtrain-server/build/
+/*/build/
 !gradle/wrapper/gradle-wrapper.jar
 testcontainers-demo/test.flv
 
