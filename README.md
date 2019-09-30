@@ -18,11 +18,11 @@
 
 * [2019-09-TacCon-Testcontainers.pdf](2019-09-TacCon-Testcontainers.pdf)
 
-## Projects
+## Code
 
 * [dockerfile-example](dockerfile-example/)
 * [testcontainers-demo](testcontainers-demo/) Codings Demos aus dem Talk
-* [testcontainers-live-coding/](testcontainers-live-coding/) Ergebnisse Live Coding Session
+* [testcontainers-live-coding](testcontainers-live-coding/) Ergebnisse Live Coding Session
 * [youtrain](youtrain/) Frontend Beispielprojekt "YouTrain"
 * [youtrain-integrationtest](youtrain-integrationtest/) Integrationstest YouTrain
 * [youtrain-server](youtrain-server/) Backend Beispielprojekt "YouTrain"
