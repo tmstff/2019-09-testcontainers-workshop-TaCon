@@ -14,6 +14,10 @@
 * [https://www.tarent.de/](https://www.tarent.de/)
 * [https://www.tarent.de/academy/](https://www.tarent.de/academy/)
 
+## Conference
+
+* [TACON Leipzig 2019](https://tacon-konferenz.de/)
+
 ## Slides
 
 * [2019-09-TacCon-Testcontainers.pdf](2019-09-TacCon-Testcontainers.pdf)
